@@ -1,0 +1,123 @@
+@import "tailwindcss";
+
+@theme {
+  /* ink — deep navy scale */
+  --color-ink-950: #050a18;
+  --color-ink-900: #081120;
+  --color-ink-850: #0b1730;
+  --color-ink-800: #0e1c3d;
+  --color-ink-700: #16294f;
+  --color-ink-600: #1f3a6e;
+
+  /* brand — blue */
+  --color-brand-200: #bfdbfe;
+  --color-brand-300: #93c5fd;
+  --color-brand-400: #60a5fa;
+  --color-brand-500: #3b82f6;
+  --color-brand-600: #2563eb;
+
+  /* ice — cyan accent */
+  --color-ice-200: #a5f3fc;
+  --color-ice-300: #67e8f9;
+  --color-ice-400: #22d3ee;
+  --color-ice-500: #06b6d4;
+
+  /* paper — light band */
+  --color-paper: #f6f8fc;
+  --color-paper-ink: #0b1730;
+
+  --font-display: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, "Cascadia Mono", "SF Mono", Menlo, Consolas, monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 4.5rem;
+}
+
+body {
+  background-color: var(--color-ink-950);
+  color: #dbe4f5;
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: rgba(34, 211, 238, 0.25);
+  color: #ffffff;
+}
+
+/* ---------- surfaces ---------- */
+
+.hairline {
+  border-color: rgba(148, 163, 184, 0.14);
+}
+
+.panel {
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(148, 163, 184, 0.14);
+}
+
+.panel-hover {
+  transition: border-color 0.35s ease, background 0.35s ease;
+}
+.panel-hover:hover {
+  border-color: rgba(96, 165, 250, 0.35);
+  background: rgba(255, 255, 255, 0.045);
+}
+
+/* ---------- type helpers ---------- */
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-ice-300);
+}
+
+.text-gradient {
+  background: linear-gradient(100deg, #bfdbfe 0%, #60a5fa 45%, #22d3ee 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ---------- decorative (used sparingly) ---------- */
+
+.bg-grid {
+  background-image:
+    linear-gradient(to right, rgba(148, 163, 184, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(148, 163, 184, 0.05) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+/* ---------- scroll reveal ---------- */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
